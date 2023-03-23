@@ -1,15 +1,25 @@
-const age = document.querySelector(".age").value;
-const name = document.querySelector(".name").value;
+const form = document.querySelector('form');
 
 
-function myPromiseFnc(){
-	return new Promise((resolve,reject)=>{
-		setTimeout(()=>{
-			
-		}
-		,4000)
-	})
-}
+form.addEventListener('submit' , e => {
 
-alert(age);
-alert(name);
+	e.preventDefault();
+	const nameInput = document.querySelector("#name");
+	const ageInput = document.querySelector("#age");
+
+	const name = nameInput.value;
+	const age = parseInt(ageInput.value);
+
+	const promise = new Promise((resolve,reject)=> {
+	 setTimeout(() => {
+			if( age > 18 ){
+			resolve(`Welcome, ${name}. You can vote.`);
+		     }
+			else{
+				reject(`Oh sorry ${name}. You aren't old enough.`);
+			}
+		}, 4000);	
+	  });
+
+	
+})
